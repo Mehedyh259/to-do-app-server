@@ -62,8 +62,10 @@ const run = async () => {
             const tasks = await taskCollection.find(filter).toArray();
             res.status(200).send(tasks);
         });
-        app.put('/task/:id', verifyToken, async (req, res) => {
+
+        app.put('/task/:id', async (req, res) => {
             const id = req.params.id;
+            console.log(id);
             const filter = { _id: ObjectId(id) }
             const options = { upsert: true };
             const updatedDoc = {
